@@ -12,9 +12,7 @@
 (defn get-git-version
   []
   (apply str (rest (clojure.string/trim
-                    (:out (sh
-                           "git" "describe" "--match" "v*.*"
-                           "--abbrev=4" "--dirty=**DIRTY**"))))))
+                    (:out (sh "git" "log" "-1" "--format='%H'"))))))
 
 (defn git-version
   "Main project task."
